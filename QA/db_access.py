@@ -1,7 +1,6 @@
 import faiss
 import numpy as np
 import pickle
-from typing import Union, List
 
 class VectorDB:
     def __init__(self, dim: int = 384):

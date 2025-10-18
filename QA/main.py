@@ -2,36 +2,6 @@ from db_access import VectorDB
 from embedder import Embedder
 
 import sys
-'''
-from interact_llamacpp import LLM
-MODEL_PATH = 'model-q4_K.gguf'
-
-
-llm = LLM()
-
-print('Инициализировано')
-if '-llm' in sys.argv:
-    llm.initialize(MODEL_PATH, system_prompt='Ты - ассистент компании Транснефть. Твоя задача - отвечать на вопросы пользователей, пользуясь **только** информацией, которую тебе предоставил пользователь. Ты НЕ отвечаешь на вопросы, не связанные с Транснефтью. Ты НЕ используешь факты, не предложенные тебе. Если ты не можешь ответить на вопрос, пользуясь только данной тебе информацией, отвечай, что ты не знаешь и это не по теме.')
-    vectors.load('llm.bin', 'llm_dcts.bin')
-    print('Режим LLM')
-    while True:
-        try:
-            message = input('Введите сообщение: ')
-            info = vectors.search(embedder.embed(message))[2][0]["context"]
-            print(info)
-            print(llm.interact(info + message))
-        except KeyboardInterrupt:
-            break
-else:
-    vectors.load('questions.bin', 'questions_dcts.bin')
-    while True:
-        try:
-            message = input('Введите сообщение: ')
-            
-            print('Оценка:', result[0][0])
-        except KeyboardInterrupt:
-            break'''
-
 from pathlib import Path
 
 from PyQt6.QtWidgets import (
@@ -50,7 +20,7 @@ def generate_response(prompt: str) -> str:
         ans = result[2][0]["answer"]
     else:
         ans = 'Я не знаю ответа на этот вопрос' 
-    return ans + 'оценка: ' + str(result[0][0])
+    return ans
 
 class LLMVideoApp(QWidget):
     def __init__(self):
@@ -117,7 +87,6 @@ class LLMVideoApp(QWidget):
         text = self.input_line.text().strip()
         if not text:
             return
-
         try:
             response = generate_response(text)
         except Exception as e:

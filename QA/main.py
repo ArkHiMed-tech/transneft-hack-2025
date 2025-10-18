@@ -49,7 +49,7 @@ class LLMVideoApp(QWidget):
         self.player.setVideoOutput(self.video_item)
 
         # Загрузка видео
-        video_path = Path("videos/waiting.mp4").resolve()
+        video_path = Path("videos/idle.mp4").resolve()
         if video_path.exists():
             self.player.setSource(QUrl.fromLocalFile(str(video_path)))
         else:
@@ -93,8 +93,6 @@ class LLMVideoApp(QWidget):
             response = f"Ошибка: {e}"
 
         self.response_box.setText(response)
-
-        
 
         self.input_line.clear()
 
